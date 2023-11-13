@@ -1,0 +1,3293 @@
+
+Lecture 1:
+Introduction:
+what is react?
+ans: it is javascript library 
+
+why it is in demand?
+-ans: it works on concpet of virtual DOM which keeps the copy of original dom and when user do changes 
+it compares the virtual dom with updated DOM and where the actuall change requires 
+it only updates that element and leave other which makes it fast as compare to other frameworks like angular 
+
+- it is highly used in single page application 
+- it does not load everytime
+- it loads all content only once. 
+
+who maintains react?
+ans: maintain by facebook 
+
+Lecture 2: React js without Installation
+- React is generally used with NPM
+- But can also use CDN 
+- Make example of React CDN
+---------------------------
+<html>
+    <head>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="mydiv">
+
+        </div>
+        <script type="text/babel">
+         
+         function Test(){
+            const bla=()=>alert("hello react");
+            return <button onClick={bla}>clickMe</button>
+         }
+
+         class Hello extends React.Component{
+
+            render()
+            {
+                return <div>Welcome to react <Test/></div>  // by this way we can use function as a component if function is written in caps
+            }
+
+         }
+         
+         ReactDOM.render(<Hello />,document.getElementById('mydiv')); // it takes 2 parameter name of component and where we want to add change(selector element)
+
+        </script>
+
+    </body>
+    </html>
+--------------------------
+
+- Interview questions 
+============================
+
+Lecture 4: setup environment in ubuntu 
+- using github link, node is required  
+commands given on node js page 
+-  curl -sl https://db.nodesource.com/ 
+-  sudo apt -get install -y node js
+
+- install vs code 
+steps to create react app
+create new folder 
+go inside it and run the command below:
+npx create-react-app app-name
+
+
+Hello react app
+app component code, we can change 
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Hello react</h1>
+    </div>
+  );
+}
+
+export default App;
+
+In User.js 
+function User() {
+    return (
+      <div className="App">
+        <h1>Hello User</h1>
+      </div>
+    );
+  }
+  export default User;
+
+In index.js file
+root.render(
+  <React.StrictMode>
+    <App />
+    <User/>
+  </React.StrictMode>
+);
+==============================
+Lecture 5:
+1. Understand the file use and structure
+ans: 
+- package.json - file contains detail information about out project/ application,
+like 
+appname, version, dev dependencies with version 
+- package-lock.json - it contains complete folder structure and denpendecies details 
+node modules pakages, their version, their dependencies and source from where we installed these packages  
+
+- gitigonre
+used for ignore files which are not required to be pushed into git like node module folder 
+
+- index.js 
+entry point of the application where finally all components are rendered 
+
+- reportWebVitals.js 
+used for performance monitoring
+
+- setupTest.js and App.test.js
+Used for testing purpose 
+
+2. Understand folder use and structure 
+
+folders 
+- node modules 
+    - contains all npm packages and dependecies we have installed for app 
+- public 
+Contains favicon icon index.html etc, files which we are kept public  
+- src 
+contains all css and js files related to our code 
+all coding and implementations are done in this folder
+
+
+
+3. Interview questions
+Quest1. difference between package.json and package-lock.json
+ans: 
+ package.json - file contains detail information about out project/ application,
+like 
+appname, version, dev dependencies with version 
+- package-lock.json - it contains complete folder structure and denpendecies details 
+node modules pakages, their version, their dependencies and source from where we installed these packages  
+
+ques2. why node_modules are not pushed in git/depolyment  
+ans: 
+its size is too huge
+
+
+ques3. how end user will get node_module folder?
+ans: run npm install command and it will be genderated 
+
+4. Answer of last interview questions
+=======================================
+Lecture6: package.json in details
+
+- what is package.json importance ?
+ans: It keeps details of all deve dependencies which are required to run the application with their versions , script commands details, 
+
+- How to add new npm package ?
+ans:  npm install packagename  
+
+- Remove npm package ?
+ans: npm uninstall packagename 
+or remove the package entry from dependencies section of package.json 
+- custom commands 
+
+in script section of package.json we can add custom commands 
+for example 
+"start": "react-scripts start" i want to start my application with a different name lie vivek 
+so i can write 
+"vivek": "react-scripts start" 
+to execute it "npm run vivek" type this command  
+
+Note: npm install command reads the package.json file and check the depnedencies section and install all dependencies mentioned their 
+with the version 
+if we want to install a different version of a package we can edit the version details and run npm install command 
+it will be updated 
+
+===========================
+Lecture 7: Components 
+- What is component 
+ans: components are part of an applicaton like footer and header, side menu bar, main body section, filter section, search section
+components are more powerful than normal functions because components can have life cycle and states 
+
+- Types of component
+different types of component are present but mainly functional and class component are know 
+- functional component 
+- class component 
+- HOC(Higher order component)
+- Pure component 
+- Controlled component 
+- Uncontrolled component 
+
+- Example of Component
+function App() {
+  return (
+    <div className="App">
+      <h1>Hello react</h1>
+      <User/>
+    </div>
+  );
+}
+
+function User() {
+    return (
+      <div className="App">
+        <h1>Hello User</h1>
+      </div>
+    );
+  }
+  //export default User;
+
+Note: we can create component in different file and import it using export default componentName 
+and we can also create more than one component in one file and we don't need to export and import components
+
+Note: everything should wrapped in one element inside return of component 
+
+- Interview Questions 
+1.can we create another component inside the one component? 
+ans: 
+=========================
+Lecture 8: class component
+--------------------------
+- what is component?
+ans: part of applications 
+- What is class component?
+ans: class component are similar to function components 
+syntax:
+
+import React, {Component} from 'react'
+
+class User extends Component{
+  render(){
+    return(
+      <div><h1>Hello class component</h1></div>
+    );
+  }
+}
+
+
+
+- Interview questions
+ques1. can we create class and functional component in the same file and use it ?
+ans: yes
+example 
+
+import logo from './logo.svg';
+import './App.css';
+//import ClassComp from './ClassComp';
+import React, {Component} from 'react'
+function ClassFunTogether() {
+  return (
+    <div className="App">
+      <h1>Hello react</h1>
+      {/* <ClassComp/> */}
+      <User/>
+    </div>
+  );
+}
+
+class User extends Component{
+  render(){
+    return(
+      <div><h1>Hello class component</h1></div>
+    );
+  }
+}
+
+export default ClassFunTogether;
+
+Ques2. can we create another component/function as a child inside parent component
+ans: yes 
+example 
+export default function NestedComp(){
+
+    function Child(){
+        return (
+        <div><h2>I am child component</h2></div>
+        )
+    }
+    return(
+        <div>
+        <h1>Parent component</h1>
+        {Child()} // this is also a way to call function module 
+        <Child/> // this is 2nd way 
+        </div> 
+    )
+}
+========================
+Lecture 9: JSX with React 
+--------------
+- javascript xml(jsx)
+ans: jsx is writing javascript code with html at one place 
+example:
+function Child(){
+        return (
+        <div><h2>I am child component</h2></div>
+        )
+    }
+
+
+- Write HTML and Javascript together
+ans: 
+function Child(){
+        return (
+        <div><h2>I am child component</h2></div>
+        )
+    }
+
+- Use like HTML or XML tags 
+ans: 
+
+- can we use React without jsx -very important question 
+ans: yes we can use react without jsx 
+example 
+import React from 'react'
+export default function ReactwithoutJsx(){
+    return(
+        //  React.createElement('h1','testClass',"Hello react without jsx")
+        React.createElement('div',null,React.createElement('h1',null,'Hello this is child component without using jsx'))
+
+    )
+}
+
+
+- Interview questions
+1. can we use react with angular? 
+ans: yes because react is a library and can be used anywhere
+
+
+- To answer the last interview question
+============================
+Lecture 10: Click Events and function in react 
+-------------------------------------------
+- How to make click event
+ans: 
+export default function ClickEventCall(){
+    function AlertTest(){
+        alert("Hello Vivek");
+    }
+    return(
+        // <button onClick={AlertTest()}>ClickMe</button> // by this way alert will be autometically call without onclick
+        // <button onClick={AlertTest}>ClickMe</button> // by this way alert function will be called only on click event 
+        <div>
+        <button onClick={()=>{AlertTest()}}>ClickMe</button>
+        </div>
+    )
+}
+
+- How to call function on button click
+ans:
+2 ways:
+<button onClick={()=>{AlertTest()}}>ClickMe</button>
+<button onClick={AlertTest}>ClickMe</button>
+
+
+
+
+- Variable in functional component
+export default function ClickEventCall(){
+    let name = "Vivek";
+    function AlertTest(){
+        name = "Rakesh";
+        alert("Hello Vivek");
+    }
+    return(
+        // <button onClick={AlertTest()}>ClickMe</button> // by this way alert will be autometically call without onclick
+        // <button onClick={AlertTest}>ClickMe</button> // by this way alert function will be called only on click event 
+        <div>
+        <h1>{name}</h1>
+        <button onClick={()=>{AlertTest()}}>ClickMe</button>
+        </div>
+    )
+}
+
+
+- New interview question 
+ques1. export default function ClickEventCall(){
+    let name = "Vivek";
+    function AlertTest(){
+        name = "Rakesh";
+        alert("Hello Vivek");
+    }
+    return(
+        // <button onClick={AlertTest()}>ClickMe</button> // by this way alert will be autometically call without onclick
+        // <button onClick={AlertTest}>ClickMe</button> // by this way alert function will be called only on click event 
+        <div>
+        <h1>{name}</h1>
+        <button onClick={()=>{AlertTest()}}>ClickMe</button>
+        </div>
+    )
+}
+
+in this code name value is changed on AlertTest function call but h1 tag is not updated with the changed value why ?
+=============================
+Lecture 11: States in functional component
+-------------------------
+- what is state
+ans: 
+State is an object used to store a data and provides an update function which can be used later to change the value of state
+- Use of state 
+ans: State is used in place of variable when we want to re render the component everytime the value of state changes.  
+- Define state
+ans: 
+import React,{useState} from 'react'
+const [data,setData]=useState(0);
+
+
+- Update state with a button click
+ans: 
+import React,{useState} from 'react'
+
+export default function StateExample(){
+    const [data,setData]=useState(0);
+    function updateName(){
+        setData(data+1);
+    } 
+    console.log("if any state changes whole component will be re rendered again not only return");
+    return(
+        <>
+        <div>{data}</div>
+        <button onClick={updateName}>ClickMe</button>
+        </>
+    )
+}
+
+- How state work 
+ans: it is initialized by a value and then by using its setmethod its value is changed and when state changes whole component is
+re rendered. 
+
+- Interview questions
+1. Difference between variable and state 
+ans:when variable is updated component is not re rendered but in state when state is updated whole component is re rendered
+
+2. Can we use state outside a component? 
+ans: yes, but it is not recommended way 
+
+3. state is private or public ?
+ans: state is public 
+
+==========================================
+Lecture 12: State with Class Component
+----------------------------------------
+- Make class component
+ans: export default class StateinClass extends Component{
+    constructor(){
+        super();
+        this.state={
+            data:"React"
+        }
+    }
+    UpdateData(){
+        this.setState({data:"reactjs"})
+    }
+    
+    render(){
+        return(
+            <div>
+                <h1>{this.state.data}</h1>
+                <button onClick={()=>this.UpdateData()}>Update</button>
+            </div>
+        );
+    }
+}
+- Define state
+ans:
+ constructor(){
+        super();
+        this.state={
+            data:"React"
+        }
+    }
+
+
+- Update state with onClick function
+ans:
+UpdateData(){
+        this.setState({data:"reactjs"})
+}
+<button onClick={()=>this.UpdateData()}>Update</button>
+
+
+- Interview questions
+quest1: can we use useState hook in class component ?
+ans:  No 
+=============================
+Lecture13: Props with functional component
+------------------------------------------
+- what are props?
+ans: props are objects or container which holds value 
+- Use of props ?
+ans: It is used to pass data as a parameter to the component just like functional parameter 
+- Example with functional component
+ans: function StudentpropExample(props){
+    
+    return(
+        <div style={{backgroundColor:"skyblue", margin:'10px'}}>
+            <h1>Name: {props.name}</h1>
+            <h2>Email: {props.email}</h2>
+            <h3>Address: {props.other.address}</h3>
+            <h4>Mobile: {props.other.mobile}</h4>
+        </div>
+    )
+}
+export default StudentpropExample;
+
+
+- Update props on button click
+ans:
+const[name,setName]=useState("Anil");
+<StudentpropExample name={name} email={"vs74@gmail.com"} other={{address:"ghaziabad",mobile:'100'}}/>
+<button onClick={()=>setName("Rakesh")}>ChangeName</button>
+
+- Interview questions 
+ques1: can we pass function as props ?
+ans:
+========================================
+Lecture 15: props with class component
+-------------------------------------------
+- What are props in class ?
+ans: props are objects hold data and these are passed as an argument from one component to another component. 
+
+
+- Use of props 
+ props are used to pass some inputs to the component when component is called 
+- Example with class component
+ans:
+<ClassCompProps name={name} email="vs74@gmail.com" other={{address:"ghaziabad",mobile:'100'}} fun={setName}/> // this is present in app.js where we are calling this class component and name email other etc are props 
+
+
+import React,{Component} from 'react';
+export default class ClassCompProps extends Component{
+
+    render(){
+        return(
+            <div style={{backgroundColor:"skyblue", margin:'10px'}}>
+                <h1>{this.props.name}</h1> // this is way to access props data 
+                <h2>{this.props.email}</h2>
+                <h3>{this.props.other.address}</h3>
+                <h4>{this.props.other.mobile}</h4>
+                <button onClick={()=>this.props.fun("sidhu")}>ClickMe</button>
+            </div>
+        )
+    }
+} 
+- Update props with on Button click
+ ans: 
+
+
+ <div style={{backgroundColor:"skyblue", margin:'10px'}}>
+                <h1>{this.props.name}</h1> // this is way to access props data 
+                <h2>{this.props.email}</h2>
+                <h3>{this.props.other.address}</h3>
+                <h4>{this.props.other.mobile}</h4>
+                <button onClick={()=>this.props.fun("sidhu")}>ClickMe</button> // udpating props with button click
+            </div>
+  <ClassCompProps name={name} email="vs74@gmail.com" other={{address:"ghaziabad",mobile:'100'}} fun={setName}/>
+- Interview questions 
+ques1: can we pass function as a props ?
+ans: yes 
+ques2: can we pass html as a props ?
+ans:  yes using props.child 
+========================================
+Lecture 16: Get Input box value 
+----------------------------------
+- Make input field 
+Ans: 
+<input type="text" onChange={getValue}/>
+import React, { useState } from 'react';
+
+
+- Make function and get Value 
+export default function Inputfield(){
+    const [fielddata,setFielddata] = useState(null);
+    const [print,setPrint] = useState(false);
+    function getValue(curElement){
+        setFielddata(curElement.target.value);
+        setPrint(false);
+    }
+    return(
+        <div>
+            {
+                print?<div>{fielddata}</div>:null
+            }
+            <input type="text" onChange={getValue}/>
+            <button onClick={()=>setPrint(true)}>Print</button>
+        </div>
+    )
+}
+
+- Make button and state 
+export default function Inputfield(){
+    const [fielddata,setFielddata] = useState(null); //state here 
+    const [print,setPrint] = useState(false);
+    function getValue(curElement){
+        setFielddata(curElement.target.value);
+        setPrint(false);
+    }
+    return(
+        <div>
+            {
+                print?<div>{fielddata}</div>:null
+            }
+            <input type="text" onChange={getValue}/>
+            <button onClick={()=>setPrint(true)}>Print</button>  // added button here 
+        </div>
+    )
+}
+
+- Get value on Button click 
+ans:
+export default function Inputfield(){
+    const [fielddata,setFielddata] = useState(null); //state here 
+    const [print,setPrint] = useState(false);
+    function getValue(curElement){
+        setFielddata(curElement.target.value);
+        setPrint(false);
+    }
+    return(
+        <div>
+            {
+                print?<div>{fielddata}</div>:null
+            }
+            <input type="text" onChange={getValue}/>
+            <button onClick={()=>setPrint(true)}>Print</button>  // added button here // onclick this setPrint function will change state and field value will be printed  
+        </div>
+    )
+}
+
+
+- Interview Question 
+Question1: can we get the value of other input fields also like checkbox, radio etc 
+====================================
+Lecture 17: Hide and Show Element 
+----------------------------------
+- Make a div or any other Element
+ans:  
+
+- Make state for hiding and show Element 
+const [state,setState]=useState(true);
+
+- Make Button 
+<button onClick={()=>setState(!state)}>Show Hide</button>
+
+- Update state on button click 
+ans:
+import React, { useState } from 'react'
+
+export default function ShowHide(){
+        const [state,setState]=useState(true);
+    return(
+        <div>
+            {state?<h1>This is Show hide text</h1>:null}
+            {/* <button onClick={()=>setState(true)}>Show</button>
+            <button onClick={()=>setState(false)}>Hide</button> */}
+            <button onClick={()=>setState(!state)}>Toggle</button>
+        </div>
+    )
+}
+- interview question 
+Ques: what is difference between jquery show hide and react show hide
+ans: 
+====================================
+Lecture 18:Basic Form 
+-------------------------------------
+-  Make HTML form 
+- Add some field 
+- useState for field data 
+- submit and form control
+
+import React,{useState} from 'react'
+
+export default function FormHandling(){
+    const [name,setName]=useState("");
+    const [options,setOptions] = useState(null);
+    const [Tnc,setTnc] = useState(false);
+
+    function getData(e){
+        e.preventDefault();
+        console.warn(name,options,Tnc);
+    }
+    return(
+        <div>
+            <form onSubmit={getData}>
+                <input type="text" placeholder='name' onChange={(e)=>setName(e.target.value)}/><br/><br/>
+                <select onChange={(e)=>setOptions(e.target.value)}>
+                    <option>Select options</option>
+                    <option>Marvel</option>
+                    <option>DC</option>
+                </select><br/><br/>
+                <input type="checkbox" onChange={(e)=>setTnc(e.target.checked)}/><span>Terms & conditions</span><br/><br/>
+                <button type="submit">Submit</button>
+                <button type="reset">Clear</button>
+            </form>
+        </div>
+    )
+}
+- Interview question 
+Ques1: 
+=================================
+Lecture 19: Conditional rendering  
+- if else statement unrecommended 
+- if else recommended 
+- if elseif else recommended  
+
+import React,{useState} from 'react';
+
+export default function ConditionalRendering(){
+ const [state,setState] = useState(3)
+
+//  if(state==1)
+//     return(
+//         <div>
+//             <h1>This is if else conditional which is not recommended </h1>
+//         </div>
+//     )
+//  else
+//  return(
+//     <div>
+//         <h1>This is else condition which is not recommended </h1>
+//     </div>
+//  )
+
+    return(
+        
+        <div>{
+            // state==1?<h1>This is recommended if</h1>:<h1>This is recommended else</h1>
+            state==1?<h1>This is recommended if</h1>:state==2?<h1>This is recommended else if</h1>:<h1>This is recommended else</h1>
+            }</div>
+    )
+}
+===============================
+Lecture 20: Basic form validation:
+---------------------------------
+- create a form 
+-  add validation 
+
+=================================
+Lecture 21: Pass function as props 
+
+function FuncData(){
+    alert("function passed as props");
+  }
+
+
+  fuction App(){
+    return 
+    <FunctionPassAsProp Data={FuncData}/>   // passing function as props 
+  }
+
+
+export default function FunctionPassAsProp(props){ 
+    return(
+        <button onClick={props.Data}>call functino passed as props</button> // calling function received as props 
+    )
+}
+
+==========================
+Lecture 22: component Life cycle in react
+---------------------------
+- Mounting: birth of the component , componentdidMount
+- Updating: componentDidUpdate phase when component is updating like state change and props change
+- UnMounting: componentDidUnMount phase when component has expired
+
+interview question:
+1. if we hide the rendered component and show it again, will life cycle start again or not?
+ans: yes a new life cycle for the component starts and destory at the end 
+
+export default class LifeCycle extends React.component{
+    constructor(){
+        this.state={
+            data:"constructorstate"   // this is called before rendering fuction  
+        }
+        console.log("calling constructor");
+    }
+
+    render(){
+        return(
+            <div>Welcome to life cycle</div> // this is called after constructor 
+        )
+    }
+}
+============================
+Lecture 23: constructors Life cycle in react 
+---------------------------------
+1. what is constructor ?
+ans: constructor is a Life cycle method in react 
+2. why it is important ?
+ans: it is called before rendering of html, it first called function of life cycle in rect
+
+3. what we can do in life cycle method ?
+ans: if we want to use state declartion or variable whose value should be ready before rendering html we should do that inside 
+constructor fuction  
+
+4. Interview question ?
+1. can we use props inside constructor ?
+ans: yes 
+2. is props loaded before html rendering
+ans:  yes 
+===============================================
+Lecture 24: Render Life cycle method 
+-------------------------------------
+- use of render method 
+ans: render is used in class component to return the html 
+
+- Make class component 
+- Use state and props with render
+ans: State and props are used so that when its value changes component should be re-rendered 
+component is updated in only these case 
+- when component is created first time 
+- when state changes 
+import React from "react";
+
+export default class RenderLifeCy extends React.Component{
+
+    constructor(){
+        super();
+         this.state={
+             testRerender:"test rerender data"
+         }
+    }
+    
+    render(){
+        return(
+            <div>
+                <h1>Welcome to Render life cycle method {this.state.testRerender} </h1>
+                <button onClick={()=>this.setState({testRerender:"updated reRenderd data"})}>clickMe</button>
+                 {/* <h2>{this.props.data}</h2> */}
+                {console.log("rendering occured")} 
+            </div>
+        )
+    }
+}
+- when props changes 
+function App(){
+    const[name,setName]=useState("Anil");
+
+    return(
+<RenderLifeCy data={name}/>
+      <button onClick={()=>setName("kamlesh")}>updateProps</button>
+      )
+}
+
+import React from "react";
+
+export default class RenderLifeCy extends React.Component{
+
+
+
+    constructor(){
+        super();
+         this.state={
+             testRerender:"test rerender data"
+         }
+    }
+    
+    render(){
+        return(
+            <div>
+                 <h2>{this.props.data}</h2>
+                {console.log("rendering occured")} 
+            </div>
+        )
+    }
+}
+
+example 
+note: when props changes it update only once if user click again n again on updating props with same value it will not re-render
+note: but in case of state on every state change either with same value of with differnt value, component will re-render 
+
+
+======================================
+- Interview question 
+questions: can we use more than one render method in one component ?
+
+========================================
+Lecture 24: componentDidMount life cycle method
+-----------------------------------------
+- Use of componentDidMount
+ans: 
+It is used when atleast once the render function is executed on loading of applicatoin 
+- it is used to call API, reason suppose we want to call api on first time page loads complete and later we don't want to call api 
+so calling it inside componentDidMount is good things
+- if we perform some operations which is html dependent
+- show or hide a component etc 
+
+- Make class component 
+ans: 
+Example 
+import React from 'react'
+
+export default class CompDidMount extends React.Component{
+
+constructor(){
+    super();
+    console.warn("constructor called");
+    this.state={
+        name:"vivek"
+    }
+}
+componentDidMount(){
+    console.warn("componentDidMount is called "); // it is called only once after html rendering 
+}
+
+    render(){
+        return(
+            <>
+            <div>
+            <h1>Example of component did mount</h1>
+            <h2>component did mound is not call when state change {this.state.name}</h2>
+            <button onClick={()=>this.setState({name:"anil"})}>updateState</button> // on updatation of state componentDidMount is not called  
+            {console.warn("render method is called")}
+            </div>
+            </>
+        )
+    }
+}
+
+
+
+- no effect of state and props
+ans: 
+
+if state or props changes or updates componentDidMount will not execute again 
+
+
+- Interview questions
+1. Give example of where to use componentDidMount
+ans: calling API, show hide component 
+
+2. should we update states inside render function or inside componentDidMount method ?
+ans: if we update state inside render function it can give unexpected behavior (it can call render method infinite time)
+Note: we should never update states inside render function because it will be called everytime and code will go in infinite state 
+
+========================================
+Lecture 25: componentDidUpdate()
+-----------------------------------------
+- Use of componentDidUpdate
+ans: It is used to put some condition or execute some code when props or state are changed
+- this function only runs when props or state change in code 
+
+
+- use with State and Props
+ans: 
+
+- make class compoenent 
+ans: 
+
+import React from 'react';
+export default class CompDdUpdate extends React.Component{
+
+constructor(){
+    super();
+    this.state={
+        count:0
+    }
+}
+componentDidUpdate(preProps,preState,snapshot){
+    console.log("componentDidupdate called");   // snapshot parameter value is undefined by default its value only changes when  getSnapShotBeforeUpdate is implemented
+    console.log(preState)
+}
+
+    render(){
+        {console.log("render method called")}
+        return(
+            <>
+            <h2>Welcome to componentDidUpdate</h2>
+            <button onClick={()=>this.setState({count:this.state.count+1})}>CDUpdate</button>   
+            {/* when state changes first render method is called then componentDidUpdate will be called */}
+            </>
+        )
+    }
+
+}
+
+- previous State and previous Props
+ans:
+Previous state save the previous value of state
+previous props save the previous value of props   
+
+- Interview Questions  
+ques1.  should we call API in componentDidUpdate() ?
+ans: yes we can call here if we are doing conditional rendering otherwise we should use componentDidMount
+ques2:  can we stop componentDidUpdate execution 
+ans: yes if shouldComponentUpdate method returns false then this funtion will wil not invoke 
+======================================
+
+Lecture 26: shouldComponentUpdate 
+--------------------------------------
+- when shouldComponentUpdate is called and use 
+ans: it is called before render method, so if we want to control rendering on state change we can utilize this function 
+if we define this function in our code then it will stop the rendering on state change, by default it return false,
+if we return true from this function then it will do rendering. 
+
+it should always be used with some condition and return true if we want to call render method on specific condition 
+
+
+- It can stop rendering 
+
+
+
+- Use with state and Props 
+
+ans:
+
+import React from 'react';
+
+export default class ShouldCompUpd extends React.Component{
+
+constructor(){
+    super();
+    this.state={
+        count:0
+    }
+}
+
+shouldComponentUpdate(){
+    console.log("inside should component update",this.state.count);
+    if(this.state.count>5)
+    return false;
+    else{
+        return true;
+    }
+}
+
+    render(){
+        {console.log("inside rendering")}
+        return(
+        <>
+        <h2>Welcome to should component update {this.state.count}</h2>
+        <button onClick={()=>this.setState({count:this.state.count+1})}>Updatecount</button>
+        </>
+        )
+    }
+
+    
+}
+
+Note: for the first time render function is executed and then next time whenever state changes controll will enter into shouldComponentUpdate method and if it return true then render method will be executed, if it return false then render method will not 
+execute 
+
+
+
+- Interview question 
+Question: 
+which method is executed before componentDidUpdate or shouldComponentUpdate ?
+ans:
+
+=================================
+
+Lecture 28: componentWillUnmount Life Cycle
+--------------------------------
+- When component will unmount called 
+ans: it is called once a component is removed from the dom, for example if we hide or remove a component on button click then 
+once component is removed componentWillUnmount is called 
+
+- Use of componentWillUnmount 
+ ans: it is used to perform some operation or execute some code when a component is removed, when component is removed controll pass to the this function.  
+
+- Example of componentWillUnmount
+ans: 
+import React from 'react'
+
+export default class CompWillUnmount extends React.Component{
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount is called");
+    }
+    render(){
+        return(
+            <h1>Componen will unmount</h1>
+        )
+    }
+}
+
+app.js 
+const [TF,setTF]=useState(true)
+
+{TF==true?<CompWillUnmount/>:<h1>Component unmounted successfully</h1>}
+      <button onClick={()=>setTF(!TF)}unMount component</button>
+
+
+
+- Interview Question 
+ques1: when componentWillUnmount function is called? is it called just before component is hidden or just after component is hidden 
+ans: It is called just before component is hidden
+
+==========================================
+Lecture 28: Hooks in React js
+-----------------------------------
+- What is hoooks ?
+ans: hooks are used to implement the life cycle methods in fuctional component 
+
+- How to use hooks ?
+ans: there are predefined hooks and we can also create some hooks 
+Note: hooks are generally starts with use keywords, this is a way to identify a hook, use keyword is reserved for state it can't be used to create anyother function 
+- Example with useState hook 
+ans: 
+import React, { useState } from 'react'
+
+export default function ExampleUseState(){
+    const [data,setData]=useState("Superstar");
+    return(
+        <div>
+        <h1>Welcome to use state hook value is {data}</h1>
+        <button onClick={()=>setData("NormalStar")}>updateState</button>
+        </div>
+    )
+}
+
+- Interveiw questions 
+
+1. can we implement useState hooks in class component? 
+
+
+====================================
+Lecture 29: UseEffect Hooks in react js 
+---------------------------------
+- what is useEffect hook ?
+ans: It is one combined hook which can serve purpose of componentDidMount, componentDidUpdate, componentWillUnmount  all life cycle method 
+
+- How to use?
+ans:  
+It can be used to as a componentDidUpdate or can be used as componentDidMount or componentWillUnMount based on conditions  
+
+- Example with useEffect hook ?
+import React, { useEffect, useState } from 'react'
+
+export default function ExampUseEffect(){
+
+    const [data,setData] = useState("Anil")
+    useEffect(()=>{
+        console.log("useEffect hook is called");
+    },[]) // when we use square bracket as a 2nd parameter inside useEffect function then it limits the calling of useEffect function to only once when component is created 
+
+    useEffect(()=>{
+        console.log("useEffect hook is called 2nd time");
+    })   // we can have more than one useEffect hooks and when condition is not added inside square brackets then 
+     useEffect will also run on every state and props change,
+
+    return(
+        <div>
+        <h1>Welcome to useEffect hook learning {data}</h1>
+        <button onClick={()=>setData("Vivek")}>UpdateState</button>
+        </div>
+    )
+}
+
+
+- Example with state and props
+
+
+
+- Interview questions 
+ans:
+
+1. can we update useState inside useEffect fuction  
+ans: yes but it should be implemented conditionally otherwise infinite loop will execute 
+
+============================================
+Lecture 30: UseEffect with specific state and props 
+--------------------------------------------
+- what is useEffect ?
+ans: used as a replacement of class based life cycle methods in fuction based component 
+- useEffect with specific state 
+import React, {useEffect, useState} from "react"
+
+export default function ExamplUseEffWithCon(props){
+
+     const [data,setData] = useState(0);
+     const[counter,setCounter]=useState(23);
+    //used for state change hooks 
+     useEffect(()=>{
+         console.log("useEffect is called on data state change");
+     },[data])
+    
+     useEffect(()=>{
+         console.log("UseEffect is called on counter state change");
+     },[counter])
+
+
+    return(
+    <div>
+    <h1>Welcome to condition based useEffect example datavalue {data}</h1>   
+    <h2>Welcome to condition based useEffect example counterValue {counter}</h2>
+    <button onClick={()=>setData(data+1)}>UpdateData</button>
+     <button onClick={()=>setCounter(counter+1)}>UpdateCounter</button>
+    </div>
+    )
+}  
+
+- useEffect with specific props 
+
+
+import React, {useEffect, useState} from "react"
+
+export default function ExamplUseEffWithCon(props){
+    useEffect(()=>{
+        console.log("useEffect is called on data props change");
+    },[props.data])
+    
+    useEffect(()=>{
+        console.log("UseEffect is called on counter props change");
+    },[props.counter])
+
+// useeffect called for props change
+
+    return(
+    <div>
+    <h1>Welcome to condition based useEffect with props example datavalue  {props.data}</h1>
+    <h2>Welcome to condition based useEffect with props example counterValue {props.counter}</h2>
+    </div>
+    )
+}
+
+in App.js 
+
+const [data,setData] = useState(0);
+   const[counter,setCounter]=useState(23);
+<ExamplUseEffWithCon data={data} counter={counter}/>
+      <button onClick={()=>setData(data+1)}>UpdateDataProps</button>
+      <button onClick={()=>setCounter(counter+1)}>UpdateCounterProps</button>
+
+
+- Interveiw questions 
+1. if we pass props from redux in the same way we are doing in react then will useEffect work same and udpate the value or not 
+
+===========================================
+Lecture 31:Array Listing with Map function 
+--------------------------------------------
+- Make an array 
+
+- Why do we use Map function not for loop for iteration in render function 
+ans: 
+in render function or while returning jsx from a component using for loop is not valid in react js hence,for iterations we use 
+Map function 
+- Make a List with an array 
+
+export default function ExamListArrayobjMap(){
+
+    const students=["suresh","Ramesh","Rakesh","Anil"];
+     students.map((name)=>{
+         console.log("map function my name is: ",name);
+     });
+
+     for(let i=0;i<students.length;i++){
+         console.log("for loop my name is: ",students[i]);
+     }
+    
+    return(
+        <div>
+        <h1>Welcome to Array listing with map tutorial</h1>
+        <div>
+        <table border="1">
+            <thead>
+            <th>Students</th>
+            </thead>
+            <tbody>
+            {
+                students.map((name)=>{
+                    return(<tr>
+                        <td>{name}</td>
+                    </tr>)
+                })   // we can iterate over array elements using map function 
+
+                // for (let i=0;i<students.length;i++){    we can't use for loop inside render method of react js 
+                //     <tr><td>{students[i]}</td></tr>
+                // }
+            }
+            </tbody>
+            
+        </table>
+        </div> 
+        </div>       
+    )
+}
+
+- Make a List with an objects 
+ans:
+
+export default function ExamListArrayobjMap(){
+
+    const students=["suresh","Ramesh","Rakesh","Anil"];
+    const students2=[
+    {name:"Vivek",address:"ghaziabad",contact:"abc"},
+    {name:"Kamlesh",address:"ghaziabad",contact:"abc"},
+    {name:"Suresh",address:"ghaziabad",contact:"abc"},
+    {name:"Anil",address:"ghaziabad",contact:"abc"},
+]
+
+    // students.map((name)=>{
+    //     console.log("map function my name is: ",name);
+    // });
+
+    // for(let i=0;i<students.length;i++){
+    //     console.log("for loop my name is: ",students[i]);
+    // }
+    
+    return(
+        <div>
+        <h1>Welcome to Array listing with map tutorial</h1>
+        <div>
+        <table border="1">
+            <thead>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact</th>
+            </thead>
+            <tbody>
+            {
+                students2.map((student1)=>{
+                    return(<tr>
+                        <td>{student1.name}</td>
+                        <td>{student1.address}</td>
+                        <td>{student1.contact}</td>
+                    </tr>)
+                })   // we can iterate over array elements using map function 
+
+                // for (let i=0;i<students.length;i++){    we can't use for loop inside render method of react js 
+                //     <tr><td>{students[i]}</td></tr>
+                // }
+            }
+            </tbody>
+            
+        </table>
+        </div> 
+        </div>       
+    )
+}
+
+- Interview questions
+1. why we receive each child should have unique key props error while 
+2. th can't appear in thead error
+==================================
+Lecture 35:List with bootstrap table 
+-----------------------------------
+- List with bootstrap unique key
+import Table from 'react-bootstrap/Table';
+
+
+export default function ExamBootTable(){
+  const students=[{name:"vivek",address:"Delhi",contact:100},
+  {name:"Akhil",address:"Delhi",contact:102},
+  {name:"Dinesh",address:"Delhi",contact:103},
+  {name:"Chinmay",address:"Japan",contact:100}
+]  
+    
+    return(
+        <div>
+<Table striped bordered hover>
+    <tbody>
+        <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>contact</td>
+        </tr>
+        {
+        students.map((item,i)=>
+        item.contact===100?
+        <tr key={i}>
+        <td>{item.name}</td>
+        <td>{item.address}</td>
+        <td>{item.contact}</td>
+        </tr>:null
+            )
+        
+        }
+    </tbody>
+</Table>
+</div>
+    )
+} 
+- what is unique key in loop 
+ans: unique key is used by react to differentiate  between elements 
+
+- install bootstrap 
+ans: npm install react-bootstrap bootstrap 
+
+- use bootstrap table with loop
+ans: import Table from 'react-bootstrap/Table'
+
+- interview questions 
+1. 
+======================================
+Lecture 35: Nested list in react js
+-------------------------------------
+- Make nested array
+
+- understand nested array 
+- Use the map function 
+- Use the nested map function 
+ans:
+import Table from 'react-bootstrap/Table'
+
+export default function ExamNestedListTable(){
+const students=[{name:"Vivek",email:"vs74@gmail.com", 
+address:[{house:"a-202",city:"Ghaziabad",contact:"100"},
+{house:"a-203",city:"Ghaziabad",contact:"101"},
+{house:"a-204",city:"Ghaziabad",contact:"102"},
+{house:"a-205",city:"Ghaziabad",contact:"103"}]},
+{name:"Ramesh",email:"Bs74@gmail.com", 
+address:[{house:"a-202",city:"Ghaziabad",contact:"100"},
+{house:"a-203",city:"Ghaziabad",contact:"101"},
+{house:"a-204",city:"Ghaziabad",contact:"102"},
+{house:"a-205",city:"Ghaziabad",contact:"103"}]},
+{name:"Suresh",email:"Ds74@gmail.com",
+address:[{house:"a-202",city:"Ghaziabad",contact:"100"},
+{house:"a-203",city:"Ghaziabad",contact:"101"},
+{house:"a-204",city:"Ghaziabad",contact:"102"},
+{house:"a-205",city:"Ghaziabad",contact:"103"}] },
+{name:"Ankit",email:"Es74@gmail.com", 
+address:[{house:"a-202",city:"Ghaziabad",contact:"100"},
+{house:"a-203",city:"Ghaziabad",contact:"101"},
+{house:"a-204",city:"Ghaziabad",contact:"102"},
+{house:"a-205",city:"Ghaziabad",contact:"103"}]}]
+    return(
+        <div>
+            <Table striped bordered hover>
+            <tbody>
+                <tr>
+                    <td>S.No.</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Address</td>
+                </tr>
+                {
+                    students.map((item,i)=>
+                        <tr key={i}>
+                            <td>{i+1}</td>
+                            <td>{item.name}</td>
+                            <td>{item.email}</td>
+                            <td>
+                                <Table striped bordered hover>
+                                    <tbody>
+                                        <tr>
+                                            <td>House</td>
+                                            <td>City</td>
+                                            <td>Contact</td>
+                                            </tr>{
+
+                                    item.address.map((addr,ind)=>
+                                        <tr key={ind}>    
+                                        <td>{addr.house}</td>
+                                        <td>{addr.city}</td>
+                                        <td>{addr.contact}</td>
+                                    </tr>
+                                    )
+                                    }
+                                    </tbody>
+                                </Table>
+                                </td>
+                        </tr>
+                    )
+                }
+            </tbody>
+            </Table>
+        </div>
+    )
+}
+
+
+- Interview questions:
+1. can we display nested address details column before serial no column ? if yes how?
+
+ans: 
+yes, place the complete td data before s.no td 
+
+================================
+Lecture 36#: reuse a component 
+-------------------------------
+- Make a component
+ans:
+
+export default function ExamReuseComp(props){   // this is component we will reuse 
+    return(
+        <div>
+        <div>{props.details.name}</div>
+        <div>{props.details.address}</div>
+        <div>{props.details.contact}</div>
+        <button>click Me</button>  
+        </div>
+    )
+}
+
+- Make a list from array
+- Use component inside map function 
+ans:
+import ExamReuseComp from "./ExamReuseComp";   //here we are reusing(consuming the reusable component we created)
+export default function ConsumeReuseComp(){
+const students=[{name:"vivek",address:"Delhi",contact:100},
+{name:"Akhil",address:"Delhi",contact:102},
+{name:"Dinesh",address:"Delhi",contact:103},
+{name:"Chinmay",address:"Japan",contact:100}
+]  
+
+    return(
+        <div>
+            {
+                students.map((item)=>
+                <ExamReuseComp details={item}/>
+                )
+            
+            }
+        </div>
+    )
+}
+
+- Interview questions
+1.  can we create function inside the resuseable component or we should declare only in consuming component
+ans: 
+We can create function inside the resuseable component but when it will be consumed mulitiple times there it can create more than 
+one defination for the same function 
+Hence, we should define such functions inside consuming component and pass it as a props to reusable component. 
+
+by this way we can save memory otherwise it can create memory issue 
+
+================================================
+Lecture 38: Fragments in React js
+-------------------------------- 
+- what is fragment?
+ans:
+fragments are used to wrap more than one element or more than one component.
+Note: generally we have to put all return html and jsx inside <div></div>
+but this is just a blank div with no meaning or no property and there is no use of this div 
+
+Hence, to solve this issue we use fragments 
+
+we can use it in 3 ways:
+1. import fragment from 'react' and put the code inside <fragment> </fragment> tag
+2. without importing <React.fragment>code</React.fragment>
+3. use <>put code here </> empty tag
+
+- where do we use it ?
+- Example with fragments?
+- Interview question
+1. can we define className properties to the fragements ? 
+2. can we use fragments in parent component also ?
+=====================================
+
+Lecture 40# Lifting up state 
+------------------------------------
+
+- Make child component 
+export default function ExamLiftingState(props){
+let userName="vivek sharma"
+    return(
+        <>
+        <h1>This is example of lifting state, means passing data from child to parent</h1>
+        <button onClick={()=>props.data(userName)}>Click me to send notification to parent</button>
+        </>
+    )
+}
+
+- How pass props from parent to child component 
+
+<ExamLiftingState data={FuncData}/>
+
+- send data from child to parent component 
+
+inside app.js 
+
+ function FuncData(userName){  // here this function will received data as a parameter when called inside child component
+    alert(userName); 
+  }
+=================
+
+export default function ExamLiftingState(props){
+let userName="vivek sharma"
+    return(
+        <>
+        <h1>This is example of lifting state, means passing data from child to parent</h1>
+        <button onClick={()=>props.data(userName)}>Click me to send notification to parent</button>
+        // here we are passing data from child to parent by calling function of parent receied as props 
+        </>
+    )
+}
+- Interview questions 
+1. can we pass props from parent to child of grand child
+ans yes, in the same way 
+2. can we pass data from grand child to grand parent
+ans: yes, in the same way we pass from child to parent
+
+other ways to implement this is 
+- contextAPI, Redux or recall library of react 
+
+
+
+------------------------------------------------
+Lecture 41# Pure component:
+
+- What is pure component?
+ans: 
+pure component is use to restrict rendering when props or state is changed with same value again. 
+Note: it is mainly used to enhance the application performance because in normal rendering 
+
+- How to use pure component ?
+To use it we have import PureComponent from react instead of component and wrap complete code inside that .
+
+Note: Pure Component is concept of class based component, to use it in functional component use useMemo hook
+
+
+- how to use with states ?
+ans:
+import React,{PureComponent} from 'react'
+
+export default class ExamPureComponent extends PureComponent{
+
+constructor(){
+    super()
+    this.state={
+        data:1
+    }
+}
+
+render(){
+    console.log("redered method is called");
+    return(
+        <>
+        <h2>Welcome we are using pure component{this.state.data}</h2>
+        <button onClick={()=>this.setState({data:this.state.data})}>click Me</button>
+        </>
+    )
+}
+
+}
+
+
+- how to use with props ?
+
+in App.js 
+
+const [data,setData]= useState(0)
+<ExamPureCompProps data={data}/>
+    <button onClick={()=>setData(data)}>UpdatePropsPureComp</button>
+
+in ExamPureComProps
+
+import React,{PureComponent} from 'react'
+
+export default class ExamPureCompProps extends PureComponent{
+
+render(){
+    console.log("redered method is called");
+    return(
+        <>
+        <h2>Welcome we are using pure component{this.props.data}</h2>
+        </>
+    )
+}
+
+}
+
+Interview Questions:
+1. should we use pure component inside functional component or there is any other method to restrict such type of rendering  
+
+
+Lecture 42: useMemo Hook in React js 
+ans:
+
+- why use useMemo hook ?
+ans: To implement pure component feature in functional components useMemo hook is used 
+
+- understand problem ?
+ans: problem is when we call any function inside render method then it will be called on every state and props change 
+for example updateCount function in below code is called on count state and value state change 
+but we have expected to call it only when count value is changed,
+
+Problem: it is gettin called unnecessaraily on every state props change which can hang our application if the logic inside the function is too big. 
+To solve such scenarios we use useMemo hook and put condition that it will be called only on specific update change 
+
+
+import { useMemo, useState } from "react"
+
+export default function ExamUseMemo(){
+
+    const [count,setCount]=useState(0);
+    const [value,setValue]=useState(0);
+
+    // function updateCount(){
+    //     console.log("inside udpate count");
+        
+    //     return count+1;
+    // }  
+const updateCount=useMemo(()=>{
+    console.log("inside udpate count");    
+    return count+1;
+},[count]) // this function will only be called when count value is updated 
+
+    return(
+        <>
+            <h2>Welcome we are using useMemo hook for performance imporovemnt</h2>
+            {/* <h2>{updateCount()}</h2> */}
+            <h2>{updateCount}</h2>
+            <h2>count:{count}</h2>
+            <h2>value:{value}</h2>
+            <button onClick={()=>setCount(count+1)}>updateCount</button>
+            <button onClick={()=>setValue(value+1)}>UpdateValue</button>        
+        </>
+    )
+}
+
+
+- apply useMemo ?
+ans: 
+import { useMemo, useState } from "react"
+
+export default function ExamUseMemo(){
+
+    const [count,setCount]=useState(0);
+    const [value,setValue]=useState(0);
+
+    // function updateCount(){
+    //     console.log("inside udpate count");
+        
+    //     return count+1;
+    // }  
+const updateCount=useMemo(()=>{
+    console.log("inside udpate count");    
+    return count+1;
+},[count])
+
+    return(
+        <>
+            <h2>Welcome we are using useMemo hook for performance imporovemnt</h2>
+            {/* <h2>{updateCount()}</h2> */}
+            <h2>{updateCount}</h2>
+            <h2>count:{count}</h2>
+            <h2>value:{value}</h2>
+            <button onClick={()=>setCount(count+1)}>updateCount</button>
+            <button onClick={()=>setValue(value+1)}>UpdateValue</button>        
+        </>
+    )
+}
+
+- Interview questions 
+1. can we use useMemo hook in class component
+ans:
+===============================
+Lecture 42: Ref with Example
+-------------------------------
+- Why use Ref ?
+ans: we use Ref in emergency situation where we need to forcefully change DOM or manipulate the data of DOM structure 
+Note: React js recommends it should not be used much in code otherwise it can generate some unexpected behaviour because 
+it has power to forcefully manipulate the data 
+
+note: when ref is used it on any element it gives control of complete dom structure and it get access to all the browser function 
+from updating value to changing color etc
+
+- Ref use with Example
+
+- Make class component 
+ans: 
+import { Component, createRef } from "react";
+
+export default class ExamRefClassComp extends Component{
+    
+
+    constructor(){
+        super();
+        this.inputRef=createRef();  // importing ref using createRef
+    }
+    getVal(){
+        
+        this.inputRef.current.style.color="red";   // this is way to point to a specific dom element and change the value 
+        this.inputRef.current.style.backgroundColor="grey";
+
+    }
+    render(){
+        return(
+            <>
+            <h2>Using Ref feature of class</h2>
+            <input type="text" ref={this.inputRef} /> // this is way to implement ref
+            <button onClick={()=>this.getVal()}>updatedValue</button>
+            </>
+        )
+    }
+}
+
+- Interview example 
+1. can we use it in functional components
+ans: no in functional components we use useRef hooks
+
+================================
+Lecture 42#: useRef Hook
+---------------------------------
+- why use useRef?
+ans: 
+
+useRef hook is used for dom maniputlation in emergency
+for example changing color of and input box updating value focus etc 
+
+it is use to point a dom element and take controll over it 
+
+- Ref use with example ?
+- Focus, color, value, handle with useRef 
+import { useEffect, useRef } from "react"
+
+export default function ExamUseRefFunComp(){
+
+const inputRef=useRef(null);
+
+useEffect(()=>{
+
+    inputRef.current.style.color="blue";
+
+},[])
+
+function updateInput(){
+    inputRef.current.style.color="red";
+    inputRef.current.focus();
+    inputRef.current.value=100;
+}
+    return(
+        <>
+        <h1>Using useRef hook</h1>
+        <input type="text" ref={inputRef}></input>
+        <button onClick={()=>updateInput()}>UpdateInput</button>
+        </>
+    )
+}
+- Interview questions
+
+1. can we use useRef in class component?
+ans: no it is used for functional component 
+=============================================
+Lecture 44: forwardRef with Example
+---------------------------------------------
+- Why use forwardRef 
+ans: 
+If one element(input box) is present in one component and another element(button) is present in another component, so in this situtation if we want to point input field and change it on button event then it is not possible with normal ref 
+so this type of problems are solved using forward ref 
+- the component contains input field should be wrapped with forwardRef hook 
+and the component contains button field should use useRef hook
+
+
+
+- make child component
+
+import {forwardRef} from 'react';
+function ExampForwardRefComp(props,Ref){ // Ref is passed from parent component which is using it
+   
+
+    return(
+        <>
+        <h1>Welcome to forwardRef concept</h1>
+        <input type="text" ref={Ref} />
+        </>
+    )
+}
+
+export default forwardRef(ExampForwardRefComp);  
+
+- Pass ref with props and use it 
+
+
+import React, {useEffect,useRef} from 'react'
+import ExamForwardRefComp from './ExamForwardRefComp';
+export default function ExamForwardRef(){
+
+const inputRef=useRef(null);
+    const updateRef=()=>{
+        console.log("inside updateRef");
+        inputRef.current.value="1000";
+        inputRef.current.style.color="red";
+        inputRef.current.focus();
+    }
+
+    return(
+        <>
+            <ExamForwardRefComp ref={inputRef}/> // passing inputRef with props 
+            <button onClick={updateRef}>updateRef</button>
+        </>
+    )
+}
+- Interview questions
+- can we use forwardRef in class component ?
+==============================================
+Lecture 44: #controlled component
+-----------------------------------
+- what is controlled component
+ans: controlled component are those components which contains few input elements and value of those input elements are 
+updated by states
+
+uncontrolled component are those components which also contains few elements but value of these input elements are directly 
+updated using dom manipulation or using Ref or like jquery by using id or className 
+
+problem statement: when we use input fields and set default values then it can't be modified so if we want to modify it, we can use 
+states 
+
+- make component 
+ans: 
+import { useState } from "react"
+
+export default function ExamControlledComponent(){
+
+    const [val,setVal]=useState(100);
+    return(
+        <>
+        <h1>Welcome to controlled component</h1>
+        <input type="text" value={val} onChange={(e)=>setVal(e.target.value)}></input>
+        <h2>value:{val}</h2>
+        </>
+    )
+}
+
+<input type="text" value="10000" ></input> // if we add value attribute  at the time of creating input element then it will be immutable 
+and value can't be changed 
+
+so we should use defaultValue attribute to make it mutable and also it can be done by changing its value with onchange event 
+- Example of controlled component 
+- Interview questions 
+1. can we implement controlled component in class based component ?
+============================================
+
+Lecture 46: uncontrolled component 
+-------------------------------------------
+- what is uncontrolled component ?
+ans: uncontrolled component are those components which also contains some input fields and those are not controlled by react state but are controlled by ref or other methods of controlling and element 
+- Make component 
+
+
+- Example with uncontrolled component
+
+import { useRef } from "react";
+export default function ExamUnControlledComp(){
+
+const inputRef1=useRef(null);
+const inputRef2=useRef(null);
+
+function updateValue(e){
+e.preventDefault(); // it used to prevent the default operation of form like when it is submitted the page gets reloaded, which is 
+not valid in react so we have to use it 
+
+console.log("input ref one:",inputRef1.current.value);
+console.log("input ref two:",inputRef2.current.value);
+console.log("input ref 3", document.getElementById("input3").value);
+}
+
+    return(
+        <>
+        <h1>Welcome to uncontrolled component</h1>
+        <form onSubmit={updateValue}>
+        <input type="text" ref={inputRef1}></input> 
+        <input type="text" ref={inputRef2}></input>
+        <input id="input3" type="text"></input>    
+        <button>Submit</button>
+        </form>   
+        </>
+    )
+}
+- interview questions
+1. very important: if a component contains few input field controlled by states and few input fields controlled by ref or other methods
+then what we call this component ?
+ans: uncontrolled component
+
+-----------------
+
+Lecture 47: What is HOC(Higher Order Component) ?
+- what is HoC?
+ans: 
+Hoc takes another components as an input and do some modification and then returns a component 
+- Make 2 compoenents?
+import { useState } from "react"
+
+export default function ExamHigherOComponent(){
+
+    return(
+        <>
+        <h1>Welcome to higher order component</h1>
+        <HocBlue comp={ParaComp}/>   // this is highrer order component and taking ParaComp component as a parameter 
+        <HocRed comp={ParaComp}/>   
+        </>
+    )
+}
+
+
+function HocBlue(props){   // receiving component as a props and updating it and return new component 
+    return(
+        <>
+        <div style={{"width":"200px","backgroundColor":"blue"}}><props.comp/></div>
+        </>
+    )
+}
+
+function HocRed(props){
+    return(
+        <>
+        <div style={{"width":"200px","backgroundColor":"red","marginTop":"5px"}}><props.comp/></div>
+        </>
+    )
+}
+
+
+function ParaComp(){
+const [count,setCount]=useState(0);
+    return(
+        <>
+        <h2>{count}</h2>
+        <button onClick={()=>setCount(count+1)}>update</button>
+        </>
+    )      
+}
+
+- Example of HOC
+- Interview questions
+1. check how many places we can use HOC
+
+=============================================================
+Lecture 48: React Router
+----------------------------------
+- setup and install react router version 6
+ans: npm install react-router-dom@6
+
+- setup wrapper for react router 
+ans:
+<BrowserRouter>
+       <Routes>
+
+        <Route path="/home" element={<Home/>} />
+        <Route path="/about" element={<About/>}/>
+
+       </Routes>
+       </BrowserRouter>
+
+- make some components
+ans: 
+
+export default function Home(){
+
+    return(
+        <>
+        <h1>Welcome to Home Page</h1>
+        </>
+    )
+}
+
+
+export default function About(){
+
+    return(
+        <>
+        <h1>Welcome to About Page</h1>
+        </>
+    )
+}
+
+- open components as page
+ans: 
+import {BrowserRouter,Routes, Route} from 'react-router-dom'
+import Home from './Home'
+import About from './About'
+export default function RoutingPage() { 
+
+    return (
+        <>
+       <BrowserRouter>
+       <Routes>
+
+        <Route path="/home" element={<Home/>} />
+        <Route path="/about" element={<About/>}/>
+
+       </Routes>
+       </BrowserRouter>
+       </>
+       )
+}
+
+- interview questions:
+====================================
+Lecture 49: React Router Links, Navbar, Anchor Tag 
+---------------------------------------------------
+- Make simple Link for Router
+
+
+- Make common commponent for Links 
+
+import {BrowserRouter, Link} from 'react-router-dom'
+export default function Navbar(){
+
+    return(
+        <>
+        <Link to="/home" >Home</Link>
+        <hr/>
+        <Link to="/about">About</Link>
+        </>
+    )
+}
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./Navbar";
+import Home from "./Home";
+import About from "./About";
+
+export default function SimpleRouterLinks(){
+
+    return(
+        <>
+        <h1>Welcome to simple Routing Links</h1>
+        <a href="/">About</a>
+        <br/>
+        <a href="/">Home</a>
+        <h1>Welcome to React Routing Links</h1>
+
+        <BrowserRouter>
+        <Navbar />   // we should never use Navbar compoent outside of browserRouter because it contains Link tag which is part of react-router
+        <Routes>
+            <Route path="/home" element={<Home/>} />
+            
+            <Route path="/about" element={<About/>} /> 
+        </Routes>
+        </BrowserRouter>
+        </>
+    )
+}
+- Why we can't use anchor tag for Links 
+ans: anchor tag reload page when user click on it but Link tag does not reload page which is and expected behaviour of single page react app 
+
+====================================
+Lecture 50: Page404 and redirect 
+------------------------------------
+
+- create page 404 or page not found component
+ans: 
+
+Page404.js
+
+export default function Page404(){
+
+    return(
+        <>
+        <h1>Page 404 found</h1>
+        </>
+    )
+}
+
+import { BrowserRouter,Routes,Route ,Link, Navigate} from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import Page404 from "./Page404";
+
+export default function RoutesWithPage404(){
+
+    return(
+
+        <>
+        
+        <BrowserRouter>
+        <br/>
+        <Link to="/about">About</Link>
+        <br/>
+        <Link to="/home">Home</Link>
+        <br/>
+        <Link to="/">Contact us</Link>
+        <Routes>
+            <Route path="/home" element={<Home/>} />
+            <Route path="/about" element={<About/>} />
+            {/* <Route path="/*" element={<h1>Page not found</h1>} /> */}
+            {/* <Route path="/*" element={<Page404/>} /> */}
+            <Route path="/*" element={<Navigate to="/home" />}/>  // /* match any path which is not supported in the application and loads the required components for example page not found or any other component 
+        </Routes>
+        </BrowserRouter>
+        </>
+    )
+}
+
+- create url redirection 
+<Route path="/*" element={<Navigate to="/home" />}/> // this is syntax to redirect to a different path or url if the url does not 
+exist
+Navigate is existing component  
+
+====================================
+Lecture 51: params in routing 
+------------------------------------
+- why do we need params with route 
+ans: We need to add params to perform extra operations on specific endpoint or route 
+for example if user opens about page /about i want to show the details of developers using a separte link, so when user enter 
+/about/vivek vivek details should be displayed 
+or /about/kamlesh then that details should be displayed 
+
+- Make components for params 
+import React from "react";
+import { BrowserRouter,Routes,Route,Link } from "react-router-dom";
+import Users from "./Users";
+import Navbar from "./Navbar";
+import About from "./About";
+
+
+export default function DynamicRoutingProps(){
+
+    return(
+    <>
+        <BrowserRouter>
+        <Navbar/>
+        <Routes>
+            <Route path="/" element={<h1>Welcom to home page</h1>} />
+            <Route path="/about" element = {<About/>}></Route>
+            <Route path="/users/:name" element = {<Users/>}/>  // /users/:name is a params which will be passed dynamically when user give values and respective page will be opened 
+            </Routes>
+        </BrowserRouter>    
+    </>
+    )
+}
+
+- Make route and link
+ans: 
+
+<BrowserRouter>
+        <Navbar/>
+        <Routes>
+            <Route path="/" element={<h1>Welcom to home page</h1>} />
+            <Route path="/about" element = {<About/>}></Route>
+            <Route path="/users/:name" element = {<Users/>}/>  // /users/:name is a params which will be passed dynamically when user give values and respective page will be opened 
+            </Routes>
+        </BrowserRouter>    
+
+- Get params and learn in details 
+
+import { useParams } from "react-router-dom";
+function Users(){
+
+    const params=useParams();   // in useParams we receive parameters, before using it you have to import it  
+    const {name} = params;
+    return(
+        <>
+        <h1>Welcome to {name} details page</h1>  // here we have used params 
+        </>
+    );
+}
+
+export default Users;
+
+=============================
+Lecture 52: Link and NavLink
+-----------------------------
+- apply Link style to make Navbar 
+note:
+we can apply style to Link tag but it breaks the protocol because generally it is not recommended to add style on Link tag 
+it can generate some warnings or allow advertisement to the site 
+that is the reason we don't apply css on Link tag 
+
+- Replace links with NavLinks
+
+import {BrowserRouter, Link, NavLink} from 'react-router-dom'
+export default function Navbar(){
+
+    return(
+        <>
+        <ul>
+        <li className='nav-link-bar'><NavLink className="nav-link-a" to="/Users" >Home</NavLink></li>
+        <li className='nav-link-bar'><NavLink className="nav-link-a" to="/about">About</NavLink></li>
+        </ul>
+        </>
+    )
+}
+
+
+- Add style to NavLinks
+Ans:
+
+.nav-link-bar{
+  display: inline-block;
+  padding:2px;
+}
+
+.nav-link-a{
+  text-decoration: none;
+  color:red;
+
+}
+
+.nav-link-a:hover{
+  color: grey;
+}
+
+- Add class to NavLinks 
+ans:
+<li className='nav-link-bar'><NavLink className="nav-link-a" to="/Users" >Home</NavLink></li>
+<li className='nav-link-bar'><NavLink className="nav-link-a" to="/about">About</NavLink></li>
+
+=============================
+Lecture 53: Active Link 
+----------------------------
+Active Links 
+- add style on active link 
+
+import {BrowserRouter, Link, NavLink} from 'react-router-dom'
+export default function Navbar(){
+
+    return(
+        <>
+        <ul>
+        {/* <li className='nav-link-bar'><NavLink className="nav-link-a" to="/Users" >Home</NavLink></li>
+        <li className='nav-link-bar'><NavLink className="nav-link-a" to="/about">About</NavLink></li> */}
+
+        <li className='nav-link-bar'><NavLink style={({isActive})=>{return {color: isActive ? "orange" : ""}}}  to="/Users" >Home</NavLink></li>
+        <li className='nav-link-bar'><NavLink style={({isActive})=>{return {color: isActive ? "orange" : ""}}}  to="/about">About</NavLink></li>
+
+            // style={({isActive})=>{return {color: isActive ? "orange" : ""}}}  here we have added css using style attribute, it is 
+            //checking if the link is active or not and adding color based on that, by default react provide active class on activated links if defined using Link 
+            //or NavLink tag 
+
+        </ul>
+        </>
+    )
+}
+
+- add classname on active link
+ .active{
+  color:pink;
+}
+
+.active:hover{
+  color:darkolivegreen;
+}
+
+============================
+Lecture 54: use searchParams hook of react router 
+---------------------------------
+- what is searchParams hook 
+ans: it is hook provided by react router to fetch url query parameters
+
+- write on example 
+import { useSearchParams } from "react-router-dom"
+
+export default function ExampleSearchParams(){
+
+const [SearchParams, setSearchParams] = useSearchParams();
+    return(
+        <>
+            <h1>Welcome to searchParams learning</h1>
+            <h3>your age:{SearchParams.get('age')}</h3>
+            <h3>your name:{SearchParams.get('name')}</h3>
+            <input type="text" onChange={(e)=>{setSearchParams({name:e.target.value,age:40})}} ></input>
+            <br/>
+            <button type="submit" onClick={()=>{setSearchParams({age:10})}}>Submit</button>
+        </>
+    )
+}
+
+
+import { BrowserRouter, Link , Routes, Route,NavLink } from "react-router-dom";
+import ExampleSearchParams from "./ExampleSearchParams";
+import Home from "./Home";
+import About from "./About";
+
+export default function RoutingWithSearchP() {
+
+    return (
+        <>
+            <BrowserRouter>
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/filter">Filter</NavLink>
+                <Routes>
+                    <Route path="/home" element={<Home/>}></Route>
+                    <Route path="/about" element={<About/>}></Route>
+                    <Route path="/filter" element={<ExampleSearchParams />}></Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
+}
+
+- what is setSearchParams ?
+ans: it is function to set value of searchParams hook using it we can set the url parameters on buttons events 
+ <input type="text" onChange={(e)=>{setSearchParams({name:e.target.value,age:40})}} ></input>
+            <br/>
+            <button type="submit" onClick={()=>{setSearchParams({age:10})}}>Submit</button>
+
+
+Note:
+useSearchParams can only be used with Routing othewise it will throw error 
+
+- Interview Questions 
+
+======================================
+Lecture 55: navigation on click 
+-------------------------------------
+what is navigation on click 
+
+
+import {Link} from "react-router-dom";
+import ExamClickNavigation from "./ExamClickNavigation";
+export default function About(){
+    return(
+        <>
+        <h1>Welcome to about page</h1>
+        <Link to="/users/Rakesh">Rakesh</Link>
+        <br/>
+        <Link to="/users/Vivek">Vivek</Link>
+        <br />
+        <ExamClickNavigation/>
+        </>
+    )
+}
+
+
+import { useNavigate } from "react-router-dom"
+
+export default function ExamClickNavigation(){
+
+    const Navigate=useNavigate();
+    return(
+        <>
+        <h1>Welcome to Click Navigation</h1>
+
+        <button onClick={()=>{Navigate('/filter')}}></button>
+        </>
+    )
+}
+
+
+import { BrowserRouter, Link , Routes, Route,NavLink } from "react-router-dom";
+import ExampleSearchParams from "./ExampleSearchParams";
+import Home from "./Home";
+import About from "./About";
+
+export default function RoutingWithSearchP() {
+
+    return (
+        <>
+            <BrowserRouter>
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/filter">Filter</NavLink>
+                <Routes>
+                    <Route path="/home" element={<Home/>}></Route>
+                    <Route path="/about" element={<About/>}></Route>
+                    <Route path="/filter" element={<ExampleSearchParams />}></Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
+}
+
+-------------------------------
+conditional rendering 
+
+import { useNavigate } from "react-router-dom"
+
+const [x,setX]=useState(true);
+const NavTo=(path)=>{
+    if(path){
+        Navigate('/about')
+    }
+    else{
+        Navigate('/filters')
+    }
+}
+
+export default function ExamClickNavigation(){
+
+    const Navigate=useNavigate();
+    return(
+        <>
+        <h1>Welcome to Click Navigation</h1>
+
+        <button onClick={()=>{NavTo(x)}></button>
+        </>
+    )
+}
+
+Note: we can also use conditional rendering in Navigate function to navigate to different urls based on some condition 
+================================
+Lecture 56: Nested Routing 
+-------------------------------
+- what is nested routing ?
+ans: when one route defined under another route then it is called nested routing 
+for example: /About/Users
+note: users is nested route inside About page 
+
+example
+
+import { BrowserRouter, Routes ,Route } from "react-router-dom";
+import Home from "./Home";
+import ExamClickNavigation from "./ExamClickNavigation";
+import About from "./About";
+import Users from "./Users";
+import Navbar from "./Navbar";
+
+export default function ExamNestedRoute(){
+
+    return(
+        <>
+        <BrowserRouter>
+        <Navbar/>
+        <Routes>
+            <Route path="/home" element={<Home/>}></Route>
+            <Route path="/filters" element={<ExamClickNavigation/>}></Route>
+            <Route path="/about/" element={<About/>}>
+                <Route path="users/:name" element={<Users/>} />
+            </Route>    // note: this is syntax of nested routing 
+        </Routes>
+        </BrowserRouter>
+        </>
+    )
+}
+
+
+
+import {Link, Outlet} from "react-router-dom";
+import ExamClickNavigation from "./ExamClickNavigation";
+export default function About(){
+    return(
+        <>
+        <h1>Welcome to about page</h1>
+        {/* <Link to="/users/Rakesh">Rakesh</Link>
+        <br/>
+        <Link to="/users/Vivek">Vivek</Link> */}
+        <Link to="users/vivek">User1</Link>
+        <br/>
+        <Link to="users/rakesh">Vivek2</Link>
+        <br />
+        <Outlet/>    //note: Outlet must be defined when using nested routes otherwise routes will not open in nested fashion
+        {/* <ExamClickNavigation/> */}
+        </>
+    )
+}
+
+
+import { useParams } from "react-router-dom";
+function Users(){
+
+    const params=useParams();
+    const {name} = params;
+    return(
+        <>
+        <h1>Welcome to {name} details page</h1>
+        </>
+    );
+}
+
+export default Users;
+
+
+====================================
+useCallback hook:
+
+function parent(){
+
+    const [counter1,setCounter1] = useState(0);
+    const [counter2, setCounter2] = useState(0);
+    const fun=()=>{
+        console.log(welcome to callbackfun);
+    }
+
+    return(
+        <>
+        <child counter={counter2} fun={fun}/>   // problem is even we are only changing counter1 and used memo so it should not impact on child component which is getting called again, because we have passed fun as props 
+        <button onClick={()=>{setCounter1(counter1+1)}}>
+        </>
+    )
+}
+
+import {memo} from 'react';
+function child(props){
+    return(
+        <>
+        <h1>Welcome to child component</h1>
+
+        </>
+    )
+}
+
+export defualt memo(child);
+
+
+==========================
+function parent(){
+
+    const [counter1,setCounter1] = useState(0);
+    const [counter2, setCounter2] = useState(0);
+    const fun=useCallback(()=>{
+        console.log(welcome to callbackfun);
+    },counter2);   // to solve issue of unnessary calls we use useCallback function so that it should not impact on <child component>
+
+    return(
+        <>
+        <child counter={counter2} fun={fun}/> // since, we have passed props but put the props fuc inside callback so changing usestate of counter1 will have any impact on child and it will not be called 
+        <button onClick={()=>{setCounter1(counter1+1)}}>
+        </>
+    )
+}
+========================================
+Lecture #57: useLocation Hook
+----------------------------------------
+Note: useLocation hook is used to get the details about url path we are hitting 
+when an endpoint is hit then what different parmeters it is taking and what are search parameter passed, path,state and key of that spe
+-cific end point 
+
+-  how to use useLocation hook
+
+import {Link, Outlet, useLocation} from 'react-router-dom';
+function ExamUseLoc(){
+    let location = useLocation();
+    console.log(location);
+    return(
+        <>
+        <h1>Welcome to useLocation hook learning</h1>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/home" state={{name:"anil",age:"40"}}>Home</Link></li>
+        <li><Link to="/users/:name">Users</Link></li>
+        <Outlet/>
+        </>
+    )
+}
+export default ExamUseLoc;
+----------------
+import { BrowserRouter, Router, Routes, Route} from "react-router-dom";
+import ExamUseLoc from "./ExamUseLoc";
+import Home from "./Home";
+import About from "./About";
+import Users from "./Users";
+export default function ExamUseLocRoute(){
+    
+    return(
+        <>
+        <BrowserRouter>
+        <ExamUseLoc/>
+            <Routes>
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/about/" element={<About/>}>
+                    <Route path="users/:name" element={<Users/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+        </>
+    )
+}
+-  check location object 
+    let location = useLocation();
+    console.log(location);
+{pathname: '/home', search: '', hash: '', state: {…}, key: 'rll34cj3'}
+hash
+: 
+""
+key
+: 
+"rll34cj3"
+pathname
+: 
+"/home"
+search
+: 
+""
+state
+: 
+{name: 'anil', age: '40'}
+[[Prototype]]
+: 
+Object
+-  check params, state, hash search etc 
+
+example to pass state 
+<li><Link to="/home" state={{name:"anil",age:"40"}}>Home</Link></li>
+
+search parmas 
+example 
+localhost:3000/home?name="suresh"
+
+search params is "?name=suresh"
+
+pathname
+it contains url path we have entered 
+if user click on home tab and it is navigating to /home then pathname will be "/home"
+
+-  Interview questions 
+===============================
+Lecture 58:#Protected Route
+------------------------------
+- what is protected Routing 
+ans: protected routing is used to protect our routing endpoint apis and redirect users to login first if user try to access any endpoint route
+
+- Make protected Route
+ans: <Route path="/" element={<ExamProtectedRouteMain Component={Home} />} /> this is syntax to create protected route 
+here we have ExamProtectedRouteMain as a component which is taking other component as props 
+and inside this component we have added code to check if local storage has value login set as true or not 
+if not then we are navigating to the Login module else we are showing the component received as props 
+
+- Use protected Route 
+
+
+- Use Local storage to complete flow 
+
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function Login(){
+
+    const navigate = useNavigate();
+
+    function LoggedIn(){
+      localStorage.setItem("login",true);
+      const login = localStorage.getItem("login");
+     if(login){
+        navigate('/home');
+     }
+     else{
+        navigate('/login');
+     }
+    }
+
+    useEffect(()=>{
+        const login = localStorage.getItem("login");
+        if(login){
+            navigate('/home');
+        }
+        
+    })
+
+    return(
+        <>
+        <h2>Login Page</h2>
+        <input text=""/>
+        <input text="" />
+        <button onClick={()=>{LoggedIn()}}>Login</button>
+        </>
+    )
+}
+--------------------
+
+import { BrowserRouter,Routes,Route, Link } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import Users from "./Users";
+import ExamProtectedRouteMain from "./ExamProtectedRouteMain";
+import Login from "./Login";
+export default function ExamProtectedRoute(){
+
+    return(
+        <>
+        {/* <h1>Welcome to Protected route Example</h1> */}
+        <BrowserRouter>
+        <li><Link to="/home" >Home</Link></li>
+        <li><Link to="/about" >About</Link></li>
+        <li><Link to="/login" >Login</Link></li>
+        <li><Link to="/users" >Users</Link></li>
+        <Routes>
+            <Route path="/" element={<ExamProtectedRouteMain Component={Home} />} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/home" element={<ExamProtectedRouteMain Component={Home} />} />
+            <Route path="/about" element={<ExamProtectedRouteMain Component={About} />} />
+            <Route path="/users" element={<ExamProtectedRouteMain Component={Users} />}/>
+        </Routes>
+        </BrowserRouter>
+        </>
+    )
+}
+----------------------------
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
+export default function ExamProtectedRouteMain(props){
+    const navigate = useNavigate();
+    const {Component} = props;
+    useEffect(()=>{
+        const login = localStorage.getItem("login");
+        console.log(login);
+        if(!login){
+            navigate('/login');
+        }
+    },[]);
+    
+    return(
+        <>
+        <div>
+        <Component/>
+        </div>    
+        </>
+    )
+}
+==========================
+Lecture 63: call Get method API 
+--------------------------
+1. what is Get api ?
+ans: it is used to fetch data from backend api 
+2. call api 
+ans: to call api we use fetch method in react 
+
+3. get api data in state
+ans: 
+
+import { useEffect, useState } from "react"
+
+export default function ExamFetch() {
+    const [userdetails, setuserDetails] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:4000/users").then((results) =>
+            results.json()).then((data) => { setuserDetails(data) })
+    }, []);
+    return (
+        <>
+            <h1>Welcome to fetch api concepts</h1>
+            <table border="1px solid">
+                <thead>
+                    <tr>
+                    <th>userId</th>
+                    <th>Contact</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+
+                        userdetails.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{item.userid}</td>
+                                    <td>{item.contact}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.address}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+
+            </table>
+
+        </>
+    )
+}
+
+4. Make List from API 
+
+
+5. backend node server 
+
+const express = require('express');
+const cors = require('cors');
+const app=express();
+
+app.use(cors());
+app.use('/users',(req,resp)=>{
+
+    resp.send(
+        [
+        {
+            "userid":1234,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12345,
+            "contact":"444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12346,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12347,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        }
+    ]
+    )
+})
+
+app.listen(4000,()=>{
+    console.log("Server is started");
+});
+
+Note: to run both backend server and react client simultaneously we have use "concurrently" package 
+it must be installed first 
+then inside package.json 
+ "both": "concurrently \"npm run start\" \"node ./nodeComponents/ApiEndpoint.js\""
+ we need to add the above command of frontend and to run backend 
+
+ then type npm run both command in terminal it will start both backend and frontend at the same time 
+ Note: since, we are requesting to server which is running on different url port 4000 
+ so when we hit fetch request we get no-cors allow-control allow-access error,
+
+ to resolve this issue first install cors in backend server folder 
+ then use 
+ const cors=require('cors);
+ app.use(cors());
+
+ it will allow to send the response properly 
+ =============================================
+ Lecture 65: POST method in Rest API
+---------------------------------------------
+- How to send post method 
+- why to use post method 
+ans: to send data from client to server or to store client data into server we have to use post method which is secure method to send data 
+- create a form and send data API
+import { useState } from "react"
+
+export default function ExamPostMehod(){
+
+    const [userid,setUserid] = useState(0);
+    const [contact,setContact] = useState();
+    const [name, setUName] = useState();
+    const [address,setAddress] = useState();
+
+    function sendData(){
+        //console.log({userid,contact,name,address});
+        fetch("http://localhost:4000/save",{
+           method:'POST',
+           headers:{'Content-Type':'application/json',
+           'Accept':'application/json'} ,
+            body:JSON.stringify({"userid":userid,"contact":contact,"name":name,"address":address})
+        }).then((result)=>{result.json().then((data)=>{
+            console.log(data);
+        })})
+    }
+
+
+    return(
+        <>
+        <input type="number" value = {userid} onChange={(e)=>{setUserid(e.target.value)}} placeholder="UserId" /><br/>
+        <input type="text" value={contact} onChange={(e)=>{setContact(e.target.value)}} placeholder="Contact" /><br/>
+        <input type="text"  value={name} onChange={(e)=>{setUName(e.target.value)}} placeholder="Name" /><br/>
+        <input type="text" value={address} onChange={(e)=>{setAddress(e.target.value)}} placeholder="Address" /><br/>
+        <button type="submit" onClick={()=>{sendData()}}>Submit</button>
+        </>
+    )
+}
+
+
+- Test results 
+backend api 
+
+
+const express = require('express');
+const cors = require('cors');
+const app=express();
+
+app.use(cors());
+app.use(express.json());
+app.use('/users',(req,resp)=>{
+
+    resp.send(
+        [
+        {
+            "userid":1234,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12345,
+            "contact":"444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12346,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        },
+
+        {
+            "userid":12347,
+            "contact":"44444",
+            "name":"vivek",
+            "address":"delhi"
+        }
+    ]
+    )
+})
+
+app.use('/save',(req,resp)=>{
+    if(req.body!==null){
+        console.log(req.body)
+        resp.json(
+            {
+               "userid":req.body.userid,
+               "contact":req.body.contact,
+               "name":req.body.name,
+               "address":req.body.address 
+            }
+        )
+        console.log("response sent successfully")
+    }
+    else{
+        resp.json({
+            "err":"no data in request body"
+        })
+    }
+})
+
+app.listen(4000,()=>{
+    console.log("Server is started");
+});
+
+Note: when we send post request and send data in json format so we should add app.use(express.json()) it will collect the data
+passed in the body of request in json format otherwise we will not be able to access the body data it will throw undefined error 
+if you try to access it 
+
+- Interview questions 
+
+quest1  can we send data with get request 
+
+Lecture66: Delete Api
+-------------------------
+
+----------------------------
+Lecture-58: State with Object
+----------------------------
+- Make a state with object 
+import { useState } from "react";
+export default function StateWithObject(){
+
+    const [data,setData] = useState({name:"vivek",age:20});
+
+    return(
+        <>
+
+        <h1>Welcome to state with object learning</h1>
+        {/* <input value={data.name} onChange={(e)=>{setData({name:e.target.value})}} />
+        <input value={data.age} onChange={(e)=>{setData({age:e.target.value})}} /> */}
+
+        {/* <input value={data.name} onChange={(e)=>{setData({age:data.age,name:e.target.value})}} />
+        <input value={data.age} onChange={(e)=>{setData({name:data.name,age:e.target.value})}} /> */}
+
+        <input value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}} />
+        <input value={data.age} onChange={(e)=>{setData({...data,age:e.target.value})}} />
+
+        <h1>Name:{data.name}</h1>
+        <h1>Age:{data.age}</h1>
+
+        </>
+    )
+}
+
+- update it and try to understand the problem 
+{/* <input value={data.name} onChange={(e)=>{setData({name:e.target.value})}} />
+        <input value={data.age} onChange={(e)=>{setData({age:e.target.value})}} /> */}
+
+if we update data object value like this then if we change name age value will be empty 
+and if we change age then name value will be empty
+
+- 2 ways to solve the issue 
+ans: 
+1. using spread oparator 
+ans:
+
+<input value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}} />
+<input value={data.age} onChange={(e)=>{setData({...data,age:e.target.value})}} />
+
+using data.name or data.age along with other changed data in setData
+{/* <input value={data.name} onChange={(e)=>{setData({age:data.age,name:e.target.value})}} />
+<input value={data.age} onChange={(e)=>{setData({name:data.name,age:e.target.value})}} /> */}
+
+
+- interview questions 
+
+
+========================================================
+Lecture 73: React redux - Introduction
+--------------------------------------
+- Redux is a library of react, it is used for state management of complete application 
+- why do we use it ?
+ans: when we need to pass data from one component to Nth component so we have to perform so much props dealing which is not
+and optimize why to pass data from one component to another. 
+
+Redux help to reduce this problem and it maintains complete application data in client side at one place, which can be used letter on 
+by an component 
+===================================================
+Lecture 74: redux architecture
+--------------------------------------
+- view->action->reducer->store
+
+data in redux flows in unidirection from view to action action to reducer and reducer to store 
+
+view:- it is representation of all react component items like buttons inputs boxes text navigation bar etc..
+action:- when we hit any event then data flow from view to action stage, it collects data from component or API 
+for example: when we click in search box, on this event new api is hit 
+
+reducer:- it collects data from action stage do some modification and send to store
+store:-   it receives data from reducer to store, it stores complete application state 
+
+Lecture 75: redux installation, and redux project 
+------------------------------------------------
+1. npx creat-react-app react-redux-app
+2. npm install redux
+3. npm install react-redux - this library is used setup communication between react and redux
+=====================================================
+
+Lecture 76: props revision 
+=====================================================
+Lecture 77: File folder structure 
+---------------------------------
+create 
+- components: this folder will contain our react components  
+    -home.js
+- containers:  this folder will contain details to create communication between react component and redux
+    - homecontainer.js
+- service: this folder contains redux 
+  - actions: this folder contains data from view 
+    -action.js
+  - reducer: this folder contains data from actions 
+    - reducer.js
+  - contants.js : this file used to make communication and send data properly from actions to reducer
+
+=======================================================
+Lecture 78: actions
+---------------------
+Lecture 79: Reducer and rootReducer
+-----------------------------------
+----------------------
+Lecture 80: Container
+---------------------
+- connect react with redux
+- import react-redux, actions and component
+- use mapDispatchToProps
+- use mapStateToProps
+-----------------------
+
+Lecture 81: complete flow
+-------------------------
+- make redux wrapper in index file
+- what is provider
+- what is store 
+- check data flow in console
+
+- check actions on button click
+<button style={{color:"red", background:"lightgreen"}} onClick={()=>{props.addToCartHandler({productname:"Ikall",price:"10000"})}}>Add to cart</button>
+
+----------------------------------------
+- component: it receives data in props from container file where we have dispatched the funtions defined for action
+home.js
+export default function Home(props){
+    console.log("propsdata:",props)
+    return(
+        <>
+        <div>
+            <h1>Welcome to react redux learning</h1>
+        </div>
+        <div>
+            <img src="addcartimage.jpg" style={{width:"100px",height:"100px", position:"relative",left:"45%"}}></img>
+        </div>
+        <div style={{width:"250px",height:"350px", marginTop:"10px", border:"1px solid gray" , background:"lightgrey", verticalAlign:"middle"}}>
+            <img src="ikalimage.webp" alt="cellphone samsung" style={{width:"245px", height:"250px"}}></img>
+            <span style={{paddingRight:"5px",marginTop:"10px", position:"relative" , top:"10px" }}>Price:10000Rs</span><br/>
+            <span style={{paddingRight:"5px",paddingTop:"5px", position:"relative" , top:"30px"}}><button style={{color:"red", background:"lightgreen"}} onClick={()=>{props.addToCartHandler({productname:"Ikall",price:"10000"})}}>Add to cart</button></span>
+        
+        
+        </div>
+        </>
+    )
+}
+
+-------
+
+container: which setup communication between component and Redux(actions & reducer)
+
+import Home from "../components/Home";
+import { addToCart } from "../service/actions/action";
+import {connect} from 'react-redux';
+
+//used to fetch data from state to component
+const mapStateToProps=state=>({
+    cardData:state
+})
+
+
+//used to store data from component to state 
+const mapDispatchToProps=dispatch=>({   
+    addToCartHandler:data=>dispatch(addToCart(data))
+})
+
+
+
+// used to create communication between redux and component
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
+
+// export default function Homecontainer(){
+
+//     return(
+//         <>
+//         <div className="HomeContainer">
+//             <Home/>
+//         </div>
+//         </>
+//     )
+// }
+---------------------------------------
+actions: action.js here we have defined the functions which will be called on button event and receive data 
+import { ADD_TO_CART } from "../constants"
+export const addToCart=(data)=>{
+    console.log("data inside add to cart",data)
+    return{
+        type:ADD_TO_CART,
+        data:data
+    }
+}
+
+-------------------------------------
+Reducer:
+
+import { ADD_TO_CART } from "../constants"
+
+const initialState={
+    cardData:[]
+}
+
+export default function cardItems(state=initialState, action){
+    console.log("data in reducer",action)
+    switch(action.type){
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cardData:action.data
+            }
+            break;
+            default:
+                return state
+    }
+
+}
+
+---
+
+rootReducer file 
+
+import {combineReducers} from 'redux'
+import cardItems from './reducer'
+export default combineReducers({    // there can be more than one reducer due to more than one actions so this function merge all    
+                                    //reducer at one place from there it will be used to pass data into store 
+    cardItems
+});
+
+-------
+Wrapping complete app in redux provider
+index.js
+
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+
+import rootReducer from './service/reducer/index';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = createStore(rootReducer);  // finally creating store from rootReducer
+console.log("store:",store);
+root.render(
+    <Provider store={store}>  // provider allows to pass data to all components 
+        <App />
+    </Provider>
+    
+);
+------------------------
+constans.js
+
+export const ADD_TO_CART="ADD_TO_CART";
+
+
+===================================
+
+
+
+========================================
+
+Memoization: it is used to optimize the performance by caching the expensive calculations, or by saving the result of previous input.
+
+can be done by useMemo hook and useCallback hook
+useMemo: cache result
+useCallback: cache complete function
+
+Memo: used for pure component like to avoid re-rending when state is chainging with same value again and again.
+we have to expor component like export default Memo(componentName)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
